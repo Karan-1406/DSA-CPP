@@ -11,11 +11,23 @@ public:
         vector<int>dp(n+1,-1);
         //return solve(n,dp);
         if(n<=1)return n;
-        dp[0]=0;
-        dp[1]=1;
+        // dp[0]=0;
+        // dp[1]=1;
+        // for(int i=2;i<=n;i++){
+        //     dp[i]=dp[i-1]+dp[i-2];
+        // }
+        // return dp[n];
+        int prev=1,sprev=0;
+        //int cur=0;
         for(int i=2;i<=n;i++){
-            dp[i]=dp[i-1]+dp[i-2];
+            //cur=prev+sprev;
+            if(i==n)return prev+sprev;
+            int temp=prev;
+            prev=prev+sprev;
+            sprev=temp;
+            
+            
         }
-        return dp[n];
+        return -1;
     }
 };
