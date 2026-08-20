@@ -21,13 +21,13 @@ public:
         //int cur=0;
         for(int i=2;i<=n;i++){
             //cur=prev+sprev;
-            if(i==n)return prev+sprev;
+            //if(i==n)return prev+sprev;
             int temp=prev+sprev;
             sprev=prev;
             prev=temp;
             
             
         }
-        return -1;
+        return prev;
     }
 };
