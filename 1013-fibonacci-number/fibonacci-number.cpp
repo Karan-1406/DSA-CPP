@@ -22,9 +22,9 @@ public:
         for(int i=2;i<=n;i++){
             //cur=prev+sprev;
             if(i==n)return prev+sprev;
-            int temp=prev;
-            prev=prev+sprev;
-            sprev=temp;
+            int temp=prev+sprev;
+            sprev=prev;
+            prev=temp;
             
             
         }
