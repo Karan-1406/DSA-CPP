@@ -19,7 +19,7 @@ public:
         int n=s.length();
         int m=p.length();
         //if(n<m)return false;
-        vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
+        vector<vector<int>>dp(n,vector<int>(m,-1));
         return f(n-1,m-1,s,p,dp);
     }
 };
