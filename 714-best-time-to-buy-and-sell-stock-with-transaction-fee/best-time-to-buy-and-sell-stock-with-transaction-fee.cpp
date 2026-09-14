@@ -15,24 +15,27 @@ public:
     int maxProfit(vector<int>& prices, int fee) {
         int n=prices.size();
         // vector<vector<int>>dp(n+1,vector<int>(3,-1));
-        vector<vector<int>>dp(n+1,vector<int>(2,-1));
-        for(int i=0;i<2;i++){
-            dp[n][i]=0;
-            //dp[n+1][i]=0;
-        }
+        // vector<vector<int>>dp(n+1,vector<int>(2,-1));
+        vector<int>prev(2,0),cur(2,0);
+        // for(int i=0;i<2;i++){
+        //     dp[n][i]=0;
+        //     //dp[n+1][i]=0;
+        // }
+        
         //return f(1,0,fee,prices,dp);
         for(int i=n-1;i>=0;i--){
             for(int bought=0;bought<2;bought++){
                 int profit=0;
                 if(!bought){
-                    profit=max(-prices[i]-fee+dp[i+1][1],dp[i+1][0]);
+                    profit=max(-prices[i]-fee+prev[1],prev[0]);
                 }
                 else{
-                    profit=max(prices[i]+dp[i+1][0],dp[i+1][1]);
+                    profit=max(prices[i]+prev[0],prev[1]);
                 }
-                dp[i][bought]=profit;
+                cur[bought]=profit;
             }
+            prev=cur;
         }
-        return dp[0][0];
+        return prev[0];
     }
 };
