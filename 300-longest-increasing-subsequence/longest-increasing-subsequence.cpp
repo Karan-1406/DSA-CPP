@@ -13,17 +13,30 @@ public:
         int n=nums.size();
         // vector<vector<int>>dp(n,vector<int>(n+1,-1));
         //vector<vector<int>>dp(n+1,vector<int>(n+1,0));
-        vector<int>prev(n+1,0),cur(n+1,0);
-        for(int i=n-1;i>=0;i--){
-            for(int j=i-1;j>=-1;j--){
-                int notpick=prev[j+1];
-                int pick=0;
-                if(j==-1 || nums[i]>nums[j])pick=1+prev[i+1];
-                cur[j+1]=max(pick,notpick);
+        // vector<int>prev(n+1,0),cur(n+1,0);
+        // for(int i=n-1;i>=0;i--){
+        //     for(int j=i-1;j>=-1;j--){
+        //         int notpick=prev[j+1];
+        //         int pick=0;
+        //         if(j==-1 || nums[i]>nums[j])pick=1+prev[i+1];
+        //         cur[j+1]=max(pick,notpick);
+        //     }
+        //     prev=cur;
+        // }
+        // // return f(0,-1,nums,dp);
+        // return prev[0];
+        vector<int>dp(n,1);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<i;j++){
+                if(nums[j]<nums[i]){
+                    dp[i]=  max(dp[i],1+dp[j]);
+                }
             }
-            prev=cur;
         }
-        // return f(0,-1,nums,dp);
-        return prev[0];
+        int maxi=0;
+        for(int i=0;i<n;i++){
+            maxi=max(maxi,dp[i]);
+        }
+        return maxi;
     }
 };
