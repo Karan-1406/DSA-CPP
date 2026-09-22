@@ -10,15 +10,29 @@ public:
         //     for(int k=i;k<n;k++)rightmax=max(rightmax,height[k]);
         //     ans+=min(leftmax,rightmax)-height[i];
         // }
-        vector<int>left=height,right=height;
-        for(int i=1;i<n;i++){
-           left[i]=max(left[i],left[i-1]);
-        }
-        for(int i=n-2;i>=0;i--){
-            right[i]=max(right[i],right[i+1]);
-        }
-        for(int i=0;i<n;i++){
-            ans+=min(left[i],right[i])-height[i];
+        // vector<int>left=height,right=height;
+        // for(int i=1;i<n;i++){
+        //    left[i]=max(left[i],left[i-1]);
+        // }
+        // for(int i=n-2;i>=0;i--){
+        //     right[i]=max(right[i],right[i+1]);
+        // }
+        // for(int i=0;i<n;i++){
+        //     ans+=min(left[i],right[i])-height[i];
+        // }
+        int left=0,right=height.size()-1;
+        int leftmax=0,rightmax=0;
+        while(left<right){
+            if(height[left]<height[right]){
+                if(height[left]>leftmax)leftmax=height[left];
+                ans+=leftmax - height[left];
+                left++;
+            }
+            else{
+                if(height[right]>rightmax)rightmax=height[right];
+                ans+=rightmax-height[right];
+                right--;
+            }
         }
         return ans;
     }
