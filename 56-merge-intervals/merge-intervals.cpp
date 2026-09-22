@@ -14,7 +14,7 @@ public:
             else{
                 temp.push_back({front,back});
                 front=intervals[i][0];
-                back=max(back,intervals[i][1]);
+                back=intervals[i][1];
             }
         }
         temp.push_back({front,back});
