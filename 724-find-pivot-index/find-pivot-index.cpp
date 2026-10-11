@@ -2,6 +2,7 @@ class Solution {
 public:
     int pivotIndex(vector<int>& nums) {
         int n=nums.size();
+        if(n==0)return -1;
         int sum1=nums[0],sum2=0;
         
         for(int i=n-1;i>0;i--)sum2+=nums[i];
